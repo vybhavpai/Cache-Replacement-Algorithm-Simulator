@@ -76,9 +76,9 @@ pair<long long int,long long int> hextodec(string s,int ways)
     for(i=28+waybits;i<42;i++)
         setno += binary[i];
  
-    for(i=0;i<28;i++)
+    for(i=0;i<28+waybits;i++)
         tagno += binary[i];
- 
+    //cout<<setno<<" "<<tagno<<endl;
     set = decimal(setno);
     tag = decimal(tagno);
     //cout<<set<<"  "<<tag<<endl;
@@ -133,10 +133,10 @@ int main(int argc , char** argv )
     	}
     	counter=(counter+1)%3;	    
     } 
-	/*
-	cout<<algorithm<<" "<<filename<<endl;
-	cout<<read<<" "<<write<<" "<<size<<endl;
-	*/
+	
+	//cout<<algorithm<<" "<<filename<<endl;
+	//cout<<read<<" "<<write<<" "<<size<<endl;
+	
 	transform(algorithm.begin(), algorithm.end(), algorithm.begin(), ::tolower);
 	if(algorithm=="srrip")
 	{
@@ -168,3 +168,5 @@ int main(int argc , char** argv )
 	}
 	return 0;
 }
+
+
