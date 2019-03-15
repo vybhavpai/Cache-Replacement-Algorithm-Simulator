@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-
+#include<lru.h>
 
 using namespace std;
 
@@ -157,6 +157,8 @@ int main(int argc , char** argv )
 	else if(algorithm=="lru")
 	{
 		//shrinidhi
+        // arguments to lru function: tagValue[size], setValue[size], size, numberOfWays
+         lru(tagValue,setValue,size,numberOfWays); 
 	}
 	else if(algorithm=="plru")
 	{
