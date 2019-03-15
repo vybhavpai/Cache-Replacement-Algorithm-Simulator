@@ -158,7 +158,7 @@ int main(int argc , char** argv )
 	{
 		//shrinidhi
         // arguments to lru function: tagValue[size], setValue[size], size, numberOfWays
-         lru(tagValue,setValue,size,numberOfWays); 
+         float hitratio = (lru(tagValue,setValue,size,numberOfWays))*100; 
 	}
 	else if(algorithm=="plru")
 	{
