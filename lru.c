@@ -77,17 +77,10 @@ int lru(long long int tagValue[], long long int setValue[], long long int size, 
 }
 int main()
 {
-	long long int size = 20;
-	int numberOfWays = 4;
+	long long int size;
+	int numberOfWays;
 	long long int i;
-	tagValue[0]=0,tagValue[1]=1,tagValue[2]=2,tagValue[3]=2,tagValue[4]=4,tagValue[5]=6,
-	tagValue[6]=0,tagValue[7]=0,tagValue[8]=2,tagValue[9]=2,tagValue[10]=4,tagValue[11]=6,
-	tagValue[12]=0,tagValue[13]=0,tagValue[14]=2,tagValue[15]=2,tagValue[16]=4,tagValue[17]=6,
-	tagValue[18]=0,tagValue[19]=0,tagValue[20]=2;
-	setValue[0]=0,setValue[1]=1,setValue[2]=1,setValue[3]=2,setValue[4]=1,
-	setValue[5]=1,setValue[6]=3,setValue[7]=1,setValue[8]=3,setValue[9]=1,
-	setValue[10]=5,setValue[11]=1,setValue[12]=1,setValue[13]=10,setValue[14]=1,
-	setValue[15]=1,setValue[16]=1,setValue[17]=1,setValue[18]=1,setValue[19]=1;
+	
 	lru(tagValue, setValue, size, numberOfWays);
     return 0;
     
