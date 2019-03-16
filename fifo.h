@@ -32,10 +32,10 @@ struct cacheSet4 cache4[4096];
 struct cacheSet8 cache8[2048];
 struct cacheSet16 cache16[1024];
 int miss, hit;
-float calcforCacheset2(int *indices, long *tags, int size, int numOfWays)
+long long setNum,tag;
+float calcforCacheset2(long long *indices, long long *tags, int size, int numOfWays)
 {
-    int i, j, setNum, count;
-    long tag;
+    int i, j, count;
     for (i = 0; i < size; i++)
     {
         setNum = indices[i];
@@ -83,10 +83,9 @@ float calcforCacheset2(int *indices, long *tags, int size, int numOfWays)
     // printf("Hit %d Miss %d", hit, miss);
 }
 
-float calcforCacheset4(int *indices, long *tags, int size, int numOfWays)
+float calcforCacheset4(long long *indices, long long *tags, int size, int numOfWays)
 {
-    int i, j, setNum, count;
-    long tag;
+    int i, j, count;
     for (i = 0; i < size; i++)
     {
         setNum = indices[i];
@@ -133,10 +132,9 @@ float calcforCacheset4(int *indices, long *tags, int size, int numOfWays)
     return ((float)hit / size);
     // printf("Hit %d Miss %d", hit, miss);
 }
-float calcforCacheset8(int *indices, long *tags, int size, int numOfWays)
+float calcforCacheset8(long long *indices, long long *tags, int size, int numOfWays)
 {
-    int i, j, setNum, count;
-    long tag;
+    int i, j, count;
     for (i = 0; i < size; i++)
     {
         setNum = indices[i];
@@ -183,10 +181,9 @@ float calcforCacheset8(int *indices, long *tags, int size, int numOfWays)
     return ((float)hit / size);
     // printf("Hit %d Miss %d", hit, miss);
 }
-float calcforCacheset16(int *indices, long *tags, int size, int numOfWays)
+float calcforCacheset16(long long *indices, long long *tags, int size, int numOfWays)
 {
-    int i, j, setNum, count;
-    long tag;
+    int i, j, count;
     for (i = 0; i < size; i++)
     {
         setNum = indices[i];
@@ -233,7 +230,7 @@ float calcforCacheset16(int *indices, long *tags, int size, int numOfWays)
     // printf("Hit %d Miss %d", hit, miss);
     return ((float)hit / size);
 }
-float fifo(int *indices, long *tags, int size, int numOfWays)
+float fifo(long long *indices, long long *tags, int size, int numOfWays)
 {
     float percentage;
     if (numOfWays == 2)
