@@ -6,8 +6,8 @@ long long int setValue[1000000];
 int lru(long long int tagValue[], long long int setValue[], long long int size, int numberOfWays)
 {
 	long long int hit=0, miss=0, i,j,k,temp1,temp2,flag;
-	// number of sets, ways and block size are variable
-	// block size if 64B and cache size if 1MB
+	// number of sets, number of ways and set size are variable
+	// block size is 64B and cache size is 1MB
 	long long int cache_size = 1024*1024, no_of_blocks = cache_size/64, block_size = 64;
 	long long int no_of_sets = no_of_blocks/numberOfWays;
 	long long int value[16384];
@@ -19,13 +19,12 @@ int lru(long long int tagValue[], long long int setValue[], long long int size, 
 		valid[i] = 0;
 		tim[i] = 0;
 	}
-	//printf("Starting of the algorithm\n");
+	
 	for(i=0;i<size;i++)
 	{
 		temp1 = setValue[i]*numberOfWays;
 		temp2 = temp1+numberOfWays-1;
-		flag = 0;
-		// here replacement takes place in case of a miss and doesn't take place in case of a miss . hits and misses are counted.
+		flag = 0;		
 		// setno. ranges from setvalue*numberofways to setvalue*numberofways + numberofways - 1
 		for(j=temp1;j<=temp2;j++)
 		{
@@ -74,7 +73,6 @@ int lru(long long int tagValue[], long long int setValue[], long long int size, 
 			}
 		}
 	}
-	//printf("No. of HIT = %lld and No. of MISS = %lld\n",hit,miss);
 	return (float)(hit)/(hit+miss);
 }
 int main()
