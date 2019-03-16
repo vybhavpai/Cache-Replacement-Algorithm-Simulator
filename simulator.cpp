@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
-#include<lru.h>
+// #include "lru.h"
+#include "fifo.h"
 
 using namespace std;
 
@@ -158,7 +159,7 @@ int main(int argc , char** argv )
 	{
 		//shrinidhi
         // arguments to lru function: tagValue[size], setValue[size], size, numberOfWays
-         float hitratio = (lru(tagValue,setValue,size,numberOfWays))*100; 
+        //  float hitratio = (lru(tagValue,setValue,size,numberOfWays))*100; 
 	}
 	else if(algorithm=="plru")
 	{
@@ -166,7 +167,7 @@ int main(int argc , char** argv )
 	}
 	else if(algorithm=="fifo")
 	{
-		//avakash
+		float hitratio = fifo(tagValue,setValue,size,numberOfWays)*100;
 	}
 	return 0;
 }
