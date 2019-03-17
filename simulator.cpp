@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-// #include "lru.h"
+#include "lru.h"
 #include "fifo.h"
 
 using namespace std;
