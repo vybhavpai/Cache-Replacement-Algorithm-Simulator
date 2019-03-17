@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define N 100
-#define BLOCK_SIZE 10
+#define N 150
+#define BLOCK_SIZE 8
 
 double x[N][N] = {0};
 double y[N][N] = {0};
