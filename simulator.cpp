@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 #include "lru.h"
 #include "fifo.h"
+#include "arc.h"
 
 using namespace std;
 
@@ -145,9 +146,9 @@ int main(int argc , char** argv )
 	}
 	else if(algorithm=="rrp")
 	{
-		//ankit
+		ARC(tagValue,setValue,size,numberOfWays)*100;
 	}
-	else if(algorithm=="nru")
+	else if(algorithm=="arc")
 	{
 		//vybhav
 	}

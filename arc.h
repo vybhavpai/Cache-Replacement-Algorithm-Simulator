@@ -100,24 +100,24 @@ public:
             cache.insert(x);
         }
 
-        cout<<"Item: "<<x<<"\n";
-        cout<<"Cache: ";
-        for(auto it = cache.begin(); it!=cache.end(); ++it)
-            cout<<*it<<" ";
-        cout<<"\np: "<<p;
-        cout<<"\nT1: ";
-        for(auto it = T1.begin(); it!=T1.end(); ++it)
-            cout<<*it<<" ";
-        cout<<"\nB1: ";
-        for(auto it = B1.begin(); it!=B1.end(); ++it)
-            cout<<*it<<" ";
-        cout<<"\nT2: ";
-        for(auto it = T2.begin(); it!=T2.end(); ++it)
-            cout<<*it<<" ";
-        cout<<"\nB2: ";
-        for(auto it = B2.begin(); it!=B2.end(); ++it)
-            cout<<*it<<" ";
-        cout<<"\n Hits: "<<hit<<"\nMiss: "<<miss<<"\n";
+        // cout<<"Item: "<<x<<"\n";
+        // cout<<"Cache: ";
+        // for(auto it = cache.begin(); it!=cache.end(); ++it)
+        //     cout<<*it<<" ";
+        // cout<<"\np: "<<p;
+        // cout<<"\nT1: ";
+        // for(auto it = T1.begin(); it!=T1.end(); ++it)
+        //     cout<<*it<<" ";
+        // cout<<"\nB1: ";
+        // for(auto it = B1.begin(); it!=B1.end(); ++it)
+        //     cout<<*it<<" ";
+        // cout<<"\nT2: ";
+        // for(auto it = T2.begin(); it!=T2.end(); ++it)
+        //     cout<<*it<<" ";
+        // cout<<"\nB2: ";
+        // for(auto it = B2.begin(); it!=B2.end(); ++it)
+        //     cout<<*it<<" ";
+        // cout<<"\n Hits: "<<hit<<"\nMiss: "<<miss<<"\n";
     }
 
 };
