@@ -5,5 +5,5 @@ The simulator is a cpp program which can simulate algorithms like :
 4.LFU
 5.FIFO
 6.PLRU
-7.RRP
+7.ARC
 
