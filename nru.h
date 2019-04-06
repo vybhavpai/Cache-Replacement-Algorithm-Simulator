@@ -119,7 +119,7 @@ int nru(long long int tagNumber, int setNumber,int noOfWays)
 		if(cache[setNumber][j] == tagNumber)
 		{
 			
-			flag = 1;
+			// flag = 1;
 			referenced[setNumber][j] = 1;
 			check(setNumber,noOfWays);
 			referenced[setNumber][j] = 1;	

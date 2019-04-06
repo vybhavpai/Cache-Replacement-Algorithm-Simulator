@@ -110,10 +110,10 @@ int main(int argc , char** argv )
 {
 	int i,numberOfWays;
 	string algorithm,filename;
-    double hitRatio;
+    int hitRatio;
     int SETNUMBER;
     long long int TAGNUMBER; 
-	long long int read=0,size=0,hits;
+	long long int read=0,size=0,hits = 0;
 	string temp,type,word;
  
 
@@ -152,7 +152,7 @@ int main(int argc , char** argv )
         	}
         	else if(algorithm=="rrp")
         	{
-        		ARC(tagValue,setValue,size,numberOfWays)*100;
+        		//ARC(tagValue,setValue,size,numberOfWays)*100;
         	}
         	else if(algorithm=="nru")
         	{
@@ -169,7 +169,10 @@ int main(int argc , char** argv )
         		//shrinidhi
                 // arguments to lru function: tagValue[size], setValue[size], size, numberOfWays
                 // Giving error check it 
-                //  float hitratio = (lru(tagValue,setValue,size,numberOfWays))*100; 
+                hitRatio = lru(TAGNUMBER,SETNUMBER,1,numberOfWays,64); 
+        		if(hitRatio == 1)
+        			hits++;
+
         	}
         	else if(algorithm=="plru")
         	{
@@ -177,15 +180,15 @@ int main(int argc , char** argv )
         	}
         	else if(algorithm=="fifo")
         	{
-        		float hitratio = fifo(tagValue,setValue,size,numberOfWays)*100;
+        		//float hitratio = fifo(tagValue,setValue,size,numberOfWays)*100;
         	}
             
             
         
     
-    }while(true)
+    }while(true);
 
-    cout << hits/size
+    cout << hits << "is number of hits " << size <<	 "is total input\n";
 	
     return 0;
 }
