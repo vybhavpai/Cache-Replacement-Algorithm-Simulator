@@ -2,8 +2,8 @@
 using namespace std;
 
 
-long int tagValue[1000000];
-long int setValue[1000000];
+//long int tagValue[1000000];
+//long int setValue[1000000];
 
 
 class AdaptiveReplacement {

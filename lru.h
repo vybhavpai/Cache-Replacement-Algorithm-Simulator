@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
-long long int tagValue[1000000];
-long long int setValue[1000000];
+//long long int tagValue[1000000];
+//long long int setValue[1000000];
 int lru(long long int tagValue[], long long int setValue[], long long int size, int numberOfWays)
 {
 	long long int hit=0, miss=0, i,j,k,temp1,temp2,flag;
@@ -75,6 +75,7 @@ int lru(long long int tagValue[], long long int setValue[], long long int size, 
 	}
 	return (float)(hit)/(hit+miss);
 }
+/*
 int main()
 {
 	long long int size;
@@ -84,4 +85,4 @@ int main()
 	lru(tagValue, setValue, size, numberOfWays);
     return 0;
     
-}
+}*/
