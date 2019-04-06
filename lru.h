@@ -3,7 +3,7 @@
 #include<math.h>
 //long long int tagValue[1000000];
 //long long int setValue[1000000];
-int lru(long long int tagValue[], long long int setValue[], long long int size, int numberOfWays)
+int lru(long long int tagValue, long long int setValue, long long int size, int numberOfWays,int block_size)
 {
 	double hit=0, miss=0;
 	int i,j,k,temp1,temp2,flag;
@@ -23,13 +23,13 @@ int lru(long long int tagValue[], long long int setValue[], long long int size, 
 	
 	for(i=0;i<size;i++)
 	{
-		temp1 = setValue[i]*numberOfWays;
+		temp1 = setValue*numberOfWays;
 		temp2 = temp1+numberOfWays-1;
 		flag = 0;		
 		// setno. ranges from setvalue*numberofways to setvalue*numberofways + numberofways - 1
 		for(j=temp1;j<=temp2;j++)
 		{
-			if(valid[j] == 1 && tagValue[i] == value[j])
+			if(valid[j] == 1 && tagValue == value[j])
 			{
 				// its a HIT
 				++hit;
@@ -50,7 +50,7 @@ int lru(long long int tagValue[], long long int setValue[], long long int size, 
 				if(valid[j] == 0)
 				{
 					// allot this empty block to that instruction
-					value[j] = tagValue[i];
+					value[j] = tagValue;
 					flag = 2;
 					tim[j] = i;
 					valid[j] = 1;
@@ -67,7 +67,7 @@ int lru(long long int tagValue[], long long int setValue[], long long int size, 
 						k = j;
 				}
 				// now we need to replace this block with index stored in 'k'
-				value[k] = tagValue[i];
+				value[k] = tagValue;
 				tim[k] = i;
 				valid[k] = 1;
 				// block replaced and miss has also been incremented
