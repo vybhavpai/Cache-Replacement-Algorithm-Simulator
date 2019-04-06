@@ -5,7 +5,8 @@
 //long long int setValue[1000000];
 int lru(long long int tagValue[], long long int setValue[], long long int size, int numberOfWays)
 {
-	long long int hit=0, miss=0, i,j,k,temp1,temp2,flag;
+	double hit=0, miss=0;
+	int i,j,k,temp1,temp2,flag;
 	// number of sets, number of ways and set size are variable
 	// block size is 64B and cache size is 1MB
 	long long int cache_size = 1024*1024, no_of_blocks = cache_size/64, block_size = 64;
@@ -32,7 +33,7 @@ int lru(long long int tagValue[], long long int setValue[], long long int size, 
 			{
 				// its a HIT
 				++hit;
-				printf("HIT\n");
+				//printf("HIT\n");
 				flag = 1;
 				valid[j] = 1;
 				tim[j] = i;
@@ -42,7 +43,7 @@ int lru(long long int tagValue[], long long int setValue[], long long int size, 
 		if(flag!=1) // it is a miss
 		{
 			++miss;
-			printf("MISS\n");
+			//printf("MISS\n");
 			flag = 0;
 			for(j=temp1;j<=temp2;j++)
 			{
@@ -73,7 +74,7 @@ int lru(long long int tagValue[], long long int setValue[], long long int size, 
 			}
 		}
 	}
-	return (float)(hit)/(hit+miss);
+	return (hit)/(hit+miss); // returning hit ratio
 }
 /*
 int main()
