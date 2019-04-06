@@ -2,13 +2,15 @@
 #include "lru.h"
 #include "fifo.h"
 #include "arc.h"
+#include "nru.h"
 
 using namespace std;
 
 
-long long int tagValue[1000000],setValue[1000000] ;
+//long long int tagValue[1000000],setValue[1000000] ;
 
-
+// declare cache properties here and send them to the function , funcyion call will now look like : (cache,valid,referenced,setnumber,tagnumber,noofways)
+// also declare any other type of globally referenced data for any algorithm
 
 long long int decimal(string temp){
     long long int sum=0,p=1;
@@ -64,6 +66,7 @@ pair<long long int,long long int> hextodec(string s,int ways)
 {
     string binary = "",binequi = "",setno = "",tagno = "";
     char temp;
+    
     int waybits = log2(ways),i;
     long long int set,tag;
     for(i=2;i<14;i++)
@@ -107,71 +110,87 @@ int main(int argc , char** argv )
 {
 	int i,numberOfWays;
 	string algorithm,filename;
-	for(i=1;i<argc;i++)
-	{
-		if(i==1)algorithm=argv[i];
-		else if(i==2) filename=argv[i];
-		else if(i==3) numberOfWays=stringtoint(argv[i]);
-	}
-	fstream file; 
-	file.open(filename.c_str());
-	int counter=0;
-	long long int read=0,write=0,size=0;
-	string word;
+    int hitRatio;
+    int SETNUMBER;
+    long long int TAGNUMBER; 
+	long long int read=0,size=0,hits = 0;
+	string temp,type,word;
+ 
+
+    for(i=1;i<argc;i++)
+    {
+        if(i==1)algorithm=argv[i];
+        //else if(i==2) filename=argv[i];
+        else if(i==2) numberOfWays=stringtoint(argv[i]);
+    }
+    // fstream file; 
+    // file.open(filename.c_str());
+    // int counter=0;
 	
-	while (file >> word) 
+	do
     { 
-    	if(counter==1)
-    	{
-    		if(word=="R")read++;
-    		else write++;
-    	}
-    	else if(counter==2)
-    	{
+    	   cin >> temp;
+           cin >> type;
+           cin >> word;
+
+           if(temp[0] == EOF)
+                break;
+
+           size++;
+           
+    	   if(type == "R")read++;
+            
+    	
     		pair<long long int,long long int> p=hextodec(word,numberOfWays);
-    		tagValue[size]=p.first;
-    		setValue[size]=p.second;
-    		size++;
-    	}
-    	counter=(counter+1)%3;	    
-    } 
+            TAGNUMBER = p.first;
+            SETNUMBER = p.second;
+    		
+        	// transform(algorithm.begin(), algorithm.end(), algorithm.begin(), ::tolower);
+        	if(algorithm=="srrip")
+        	{
+        		//py
+        	}
+        	else if(algorithm=="rrp")
+        	{
+        		//ARC(tagValue,setValue,size,numberOfWays)*100;
+        	}
+        	else if(algorithm=="nru")
+        	{
+        		hitRatio = nru(TAGNUMBER,SETNUMBER,numberOfWays);
+                if(hitRatio == 1)
+                    hits++;
+        	}
+        	else if(algorithm=="lfu")
+        	{
+        		//arqum
+        	}
+        	else if(algorithm=="lru")
+        	{
+        		//shrinidhi
+                // arguments to lru function: tagValue[size], setValue[size], size, numberOfWays
+                // Giving error check it 
+                hitRatio = lru(TAGNUMBER,SETNUMBER,1,numberOfWays,64); 
+        		if(hitRatio == 1)
+        			hits++;
+
+        	}
+        	else if(algorithm=="plru")
+        	{
+        		//chaitanya
+        	}
+        	else if(algorithm=="fifo")
+        	{
+        		//float hitratio = fifo(tagValue,setValue,size,numberOfWays)*100;
+        	}
+            
+            
+        
+    
+    }while(true);
+
+    cout << hits << "is number of hits " << size <<	 "is total input\n";
 	
-	//cout<<algorithm<<" "<<filename<<endl;
-	//cout<<read<<" "<<write<<" "<<size<<endl;
-	
-	transform(algorithm.begin(), algorithm.end(), algorithm.begin(), ::tolower);
-	if(algorithm=="srrip")
-	{
-		//py
-	}
-	else if(algorithm=="rrp")
-	{
-		ARC(tagValue,setValue,size,numberOfWays)*100;
-	}
-	else if(algorithm=="arc")
-	{
-		//vybhav
-	}
-	else if(algorithm=="lfu")
-	{
-		//arqum
-	}
-	else if(algorithm=="lru")
-	{
-		//shrinidhi
-        // arguments to lru function: tagValue[size], setValue[size], size, numberOfWays
-        // Giving error check it 
-        //  float hitratio = (lru(tagValue,setValue,size,numberOfWays))*100; 
-	}
-	else if(algorithm=="plru")
-	{
-		//chaitanya
-	}
-	else if(algorithm=="fifo")
-	{
-		float hitratio = fifo(tagValue,setValue,size,numberOfWays)*100;
-	}
-	return 0;
+    return 0;
 }
 
 
