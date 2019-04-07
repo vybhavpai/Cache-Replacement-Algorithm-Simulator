@@ -126,7 +126,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
                 }
             }
 
-			if(vreplace=0)
+			if(vreplace==0)
             {
 				// nodes=00x -> line 0
 				// nodes=01x -> line 1
@@ -140,7 +140,6 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 			}
 
 			cache2[setValue].c[currLine].tag=tagValue;
-			cache2[setValue].c[currLine].valid=1;
 
 			// Update Nodes for last access (same as read, move to function):
 			// nodes=00x -> line 0
@@ -175,6 +174,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 					node4 = (node4 & 2) | 0;
 
 				found4 = 1;
+				cout<<"Node4 in hit is"<<"currline is "<<currLine<<node4<<endl;
 				return 1;
             }
         }
@@ -188,21 +188,19 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
                 {
                     vreplace=1;
                     currLine = i;
+                    break;
                 }
             }
 
-			if(vreplace=0) {
-				// nodes=00x -> line 0
-				// nodes=01x -> line 1
-				// nodes=1x0 -> line 2
-				// nodes=1x1 -> line 3
+			if(vreplace==0) {
+
 				if (0 == (node4 & 6))
 					currLine = 0;
-				else if (2 == (node4 & 6))
+				if (2 == (node4 & 6))
 					currLine = 1;
-				else if (4 == (node4 & 5))
+				if (4 == (node4 & 5))
 					currLine = 2;
-				else if (5 == (node4 & 5))
+				if (5 == (node4 & 5))
 					currLine = 3;
 
 
@@ -221,6 +219,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
             if (3 == currLine)
                 node4 = (node4 & 2) | 0;
 
+            cout<<"Node4 in miss is"<<node4<<"currline is"<<currLine<<"Vreplace is "<<vreplace<<endl;
             return 0;
 		}
 
@@ -424,4 +423,3 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 
 }
-
