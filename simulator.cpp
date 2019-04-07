@@ -142,7 +142,7 @@ int stringtoint(string temp)
 
 int main(int argc , char** argv )
 {
-	int i,numberOfWays;
+	int i,numberOfWays,blockSize;
 	string algorithm,filename;
     int hitRatio,flag = 0;
     int SETNUMBER,counterMain = 0;
@@ -156,6 +156,8 @@ int main(int argc , char** argv )
         if(i==1)algorithm=argv[i];
         //else if(i==2) filename=argv[i];
         else if(i==2) numberOfWays=stringtoint(argv[i]);
+     	else if(i==3) blockSize=stringtoint(argv[i]);
+           
     }
     // fstream file; 
     // file.open(filename.c_str());
@@ -194,7 +196,7 @@ int main(int argc , char** argv )
         	}
         	else if(algorithm=="nru")
         	{
-        		hitRatio = nru(TAGNUMBER,SETNUMBER,numberOfWays,64);
+        		hitRatio = nru(TAGNUMBER,SETNUMBER,numberOfWays,blockSize);
                 if(hitRatio == 1)
                     hits++;
                 if(flag == 0){
@@ -215,7 +217,7 @@ int main(int argc , char** argv )
                 	cout << "inside lru \n";
                 	flag =1;
                 }
-                hitRatio = lru(TAGNUMBER,SETNUMBER,1,numberOfWays,64); 
+                hitRatio = lru(TAGNUMBER,SETNUMBER,1,numberOfWays,blockSize); 
         		if(hitRatio == 1)
         			hits++;
 
@@ -223,7 +225,7 @@ int main(int argc , char** argv )
         	else if(algorithm=="plru")
         	{
         		//chaitanya
-        		hitRatio = plru(TAGNUMBER,SETNUMBER,numberOfWays,64); 
+        		hitRatio = plru(TAGNUMBER,SETNUMBER,numberOfWays,blockSize); 
         		if(hitRatio == 1)
         			hits++;
         	}
