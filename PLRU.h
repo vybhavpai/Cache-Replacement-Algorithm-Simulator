@@ -252,14 +252,22 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 			if(vreplace==0) {
 
-				if (0 == (node8 & 6))
+				if (0 == (node8 & 104))
 					currLine = 0;
-				else if (2 == (node8 & 6))
+				else if (8 == (node8 & 104))
 					currLine = 1;
-				else if (4 == (node8 & 5))
+				else if (32 == (node8 & 100))
 					currLine = 2;
-				else if (5 == (node8 & 5))
+				else if (38 == (node8 & 100))
 					currLine = 3;
+                else if (64 == (node8 & 82))
+					currLine = 4;
+                else if (66 == (node8 & 82))
+					currLine = 5;
+                else if (80 == (node8 & 81))
+					currLine = 6;
+                else if (81 == (node8 & 81))
+					currLine = 7;
 
 
 			}
