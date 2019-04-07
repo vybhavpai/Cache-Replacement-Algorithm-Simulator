@@ -34,7 +34,7 @@ long long int cache_size = 1024*1024;
 int no_of_blocks=0;
 int vreplace = 0;
 int currLine=0;
-int i=0;
+int i=0,j;
 int counter;
 int found2=-1,found4=-1,found8=-1,found16=-1;int first=0;
 
