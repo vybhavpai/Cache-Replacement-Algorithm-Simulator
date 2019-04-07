@@ -168,10 +168,6 @@ int main(int argc, char **argv)
 
         else if(i==2) numberOfWays=stringtoint(argv[i]);
      	else if(i==3) blockSize=stringtoint(argv[i]);
-
-        else if (i == 2)
-            numberOfWays = stringtoint(argv[i]);
-1
     }
     // fstream file;
     // file.open(filename.c_str());
