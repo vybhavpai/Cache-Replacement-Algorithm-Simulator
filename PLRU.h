@@ -1,20 +1,15 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
-struct cacheLine{
-    long long int tag;
-    int valid;
-};
-
 struct cacheSet2 cache2plru[2048];
 struct cacheSet4 cache4plru[1024];
 struct cacheSet8 cache8plru[512];
-struct cacheSet16 cache16[256];
+struct cacheSet16 cache16plru[256];
 int node2=0,node4=0,node8=0,node16=0;
-long long int cache_size = 1024*1024;
+long long int cache_size = 1024*32;
 int no_of_blocks=0;
 int vreplace = 0;
-int currLine=0;
+int currLine = 0;
 int i=0,j=0;
 int counter;
 int found2=-1,found4=-1,found8=-1,found16=-1;int first=0;
@@ -63,8 +58,8 @@ void init(int block_size,int n)
         {
             for(j=0;j<16;j++)
             {
-                cache16[i].c[j].valid=0;
-                cache2plru[i].c[j].tag=-1;
+                cache16plru[i].c[j].valid=0;
+                cache16plru[i].c[j].tag=-1;
             }
         }
     }
@@ -109,10 +104,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 			if(vreplace==0)
             {
-				// nodes=00x -> line 0
-				// nodes=01x -> line 1
-				// nodes=1x0 -> line 2
-				// nodes=1x1 -> line 3
+
 				if (0 == node2)
 					currLine = 1;
 				else
@@ -123,11 +115,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 			cache2plru[setValue].c[currLine].tag=tagValue;
 			cache2plru[setValue].c[currLine].valid=1;
 
-			// Update Nodes for last access (same as read, move to function):
-			// nodes=00x -> line 0
-			// nodes=01x -> line 1
-			// nodes=1x0 -> line 2
-			// nodes=1x1 -> line 3
+
 			if (0 == currLine)
 				node2=1;
 			if (1 == currLine)
@@ -247,6 +235,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
                 {
                     vreplace=1;
                     currLine = i;
+                    break;
                 }
             }
 
@@ -301,7 +290,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 		for (counter = 0; counter < 16 && found16< 0; counter++)
         {
-            if(cache16[setValue].c[counter].tag==tagValue && cache16[setValue].c[counter].valid==1)
+            if(cache16plru[setValue].c[counter].tag==tagValue && cache16plru[setValue].c[counter].valid==1)
             {
                 if (0 == counter)
 					node16 = (node16 & 23) | 104;
@@ -347,7 +336,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 			for(i=0;i<16;i++)
             {
-                if(cache16[setValue].c[i].valid==0)
+                if(cache16plru[setValue].c[i].valid==0)
                 {
                     vreplace = 1;
                     currLine = i;
