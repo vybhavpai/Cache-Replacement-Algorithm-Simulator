@@ -140,6 +140,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 			}
 
 			cache2[setValue].c[currLine].tag=tagValue;
+			cache2[setValue].c[currLine].valid=1;
 
 			// Update Nodes for last access (same as read, move to function):
 			// nodes=00x -> line 0
@@ -208,6 +209,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 			}
 
 			cache4[setValue].c[currLine].tag=tagValue;
+			cache4[setValue].c[currLine].valid=1;
 
 
 			if (0 == currLine)
