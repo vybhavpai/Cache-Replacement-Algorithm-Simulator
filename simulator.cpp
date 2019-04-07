@@ -184,7 +184,7 @@ int main(int argc , char** argv )
         	{
         		float result = fifo(SETNUMBER,TAGNUMBER,1,numberOfWays);
                 if(result==1){
-                    hit++;
+                    hits++;
                 }
         	}
             
