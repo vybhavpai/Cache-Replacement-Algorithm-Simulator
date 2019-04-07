@@ -4,6 +4,8 @@
 #include "arc.h"
 #include "nru.h"
 
+//Command to run gzip -tc trace.gz | ./a.out fifo 4
+
 using namespace std;
 
 
@@ -180,7 +182,12 @@ int main(int argc , char** argv )
         	}
         	else if(algorithm=="fifo")
         	{
-        		//float hitratio = fifo(tagValue,setValue,size,numberOfWays)*100;
+                cout<<"hey";
+        		float result = fifo(TAGNUMBER,SETNUMBER,1,numberOfWays);
+                cout<<result;
+                if(result==1){
+                    hit++;
+                }
         	}
             
             
