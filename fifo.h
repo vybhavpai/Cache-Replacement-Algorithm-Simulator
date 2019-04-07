@@ -33,20 +33,21 @@ struct cacheSet8 cache8[2048];
 struct cacheSet16 cache16[1024];
 int miss, hit;
 long long setNum,tag;
-float calcforCacheset2(long long *indices, long long *tags, int size, int numOfWays)
+float calcforCacheset2(long long indices, long long tags, int size, int numOfWays)
 {
     int i, j, count;
     for (i = 0; i < size; i++)
     {
-        setNum = indices[i];
-        tag = tags[i];
+        setNum = indices;
+        tag = tags;
         // printf("Tag %d setNum %d\n",tag,setNum);
         for (j = 0, count = 0; j < numOfWays; j++)
         {
             if (cache2[setNum].c[j].valid == 1 && cache2[setNum].c[j].tag == tag)
             {
                 // printf("Cache hit at set %d and cache line %d valid:%d Tag:%d\n", setNum, j, cache2[setNum].c[j].valid, cache2[setNum].c[j].tag);
-                hit++;
+                // hit++;
+                return 1;
                 break;
             }
             //Beginning with all misses
@@ -57,11 +58,13 @@ float calcforCacheset2(long long *indices, long long *tags, int size, int numOfW
                 cache2[setNum].c[j].tag = tag;
                 cache2[setNum].front = (cache2[setNum].front + 1) % numOfWays;
                 // printf("Data added at set %d and cache line %d valid:%d Tag:%d\n", setNum, j, cache2[setNum].c[j].valid, cache2[setNum].c[j].tag);
-                miss++;
+                // miss++;
+                return 0;
                 break;
             }
             else
             {
+                
                 // printf("Cache miss at set %d and cache line %d valid:%d Tag:%d\n", setNum, j, cache2[setNum].c[j].valid, cache2[setNum].c[j].tag);
                 count++;
             }
@@ -72,10 +75,12 @@ float calcforCacheset2(long long *indices, long long *tags, int size, int numOfW
             if (count == numOfWays)
             {
                 // printf("All cache lines in the set checked and non match so fifo performed back%d\n", cache2[setNum].back);
+                
                 miss++;
                 cache2[setNum].c[cache2[setNum].back].tag = tag;
                 cache2[setNum].c[cache2[setNum].back].valid = 1;
                 cache2[setNum].back = (cache2[setNum].back + 1) % numOfWays;
+                return 0;
             }
         }
     }
@@ -83,13 +88,13 @@ float calcforCacheset2(long long *indices, long long *tags, int size, int numOfW
     // printf("Hit %d Miss %d", hit, miss);
 }
 
-float calcforCacheset4(long long *indices, long long *tags, int size, int numOfWays)
+float calcforCacheset4(long long indices, long long tags, int size, int numOfWays)
 {
     int i, j, count;
     for (i = 0; i < size; i++)
     {
-        setNum = indices[i];
-        tag = tags[i];
+        setNum = indices;
+        tag = tags;
         // printf("Tag %d setNum %d\n",tag,setNum);
         for (j = 0, count = 0; j < numOfWays; j++)
         {
@@ -97,6 +102,7 @@ float calcforCacheset4(long long *indices, long long *tags, int size, int numOfW
             {
                 // printf("Cache hit at set %d and cache line %d valid:%d Tag:%d\n", setNum, j, cache4[setNum].c[j].valid, cache4[setNum].c[j].tag);
                 hit++;
+                return 1;
                 break;
             }
             //Beginning with all misses
@@ -108,6 +114,7 @@ float calcforCacheset4(long long *indices, long long *tags, int size, int numOfW
                 cache4[setNum].front = (cache4[setNum].front + 1) % numOfWays;
                 // printf("Data added at set %d and cache line %d valid:%d Tag:%d\n", setNum, j, cache4[setNum].c[j].valid, cache4[setNum].c[j].tag);
                 miss++;
+                return 0;
                 break;
             }
             else
@@ -126,19 +133,20 @@ float calcforCacheset4(long long *indices, long long *tags, int size, int numOfW
                 cache4[setNum].c[cache4[setNum].back].tag = tag;
                 cache4[setNum].c[cache4[setNum].back].valid = 1;
                 cache4[setNum].back = (cache4[setNum].back + 1) % numOfWays;
+                return 0;
             }
         }
     }
-    return ((float)hit / size);
+    // return ((float)hit / size);
     // printf("Hit %d Miss %d", hit, miss);
 }
-float calcforCacheset8(long long *indices, long long *tags, int size, int numOfWays)
+float calcforCacheset8(long long indices, long long tags, int size, int numOfWays)
 {
     int i, j, count;
     for (i = 0; i < size; i++)
     {
-        setNum = indices[i];
-        tag = tags[i];
+        setNum = indices;
+        tag = tags;
         // printf("Tag %d setNum %d\n",tag,setNum);
         for (j = 0, count = 0; j < numOfWays; j++)
         {
@@ -146,6 +154,7 @@ float calcforCacheset8(long long *indices, long long *tags, int size, int numOfW
             {
                 // printf("Cache hit at set %d and cache line %d valid:%d Tag:%d\n", setNum, j, cache8[setNum].c[j].valid, cache8[setNum].c[j].tag);
                 hit++;
+                return 1;
                 break;
             }
             //Beginning with all misses
@@ -157,6 +166,7 @@ float calcforCacheset8(long long *indices, long long *tags, int size, int numOfW
                 cache8[setNum].front = (cache8[setNum].front + 1) % numOfWays;
                 // printf("Data added at set %d and cache line %d valid:%d Tag:%d\n", setNum, j, cache8[setNum].c[j].valid, cache8[setNum].c[j].tag);
                 miss++;
+                return 0;
                 break;
             }
             else
@@ -175,19 +185,21 @@ float calcforCacheset8(long long *indices, long long *tags, int size, int numOfW
                 cache8[setNum].c[cache8[setNum].back].tag = tag;
                 cache8[setNum].c[cache8[setNum].back].valid = 1;
                 cache8[setNum].back = (cache8[setNum].back + 1) % numOfWays;
+                return 0;
             }
+
         }
     }
-    return ((float)hit / size);
+    // return ((float)hit / size);
     // printf("Hit %d Miss %d", hit, miss);
 }
-float calcforCacheset16(long long *indices, long long *tags, int size, int numOfWays)
+float calcforCacheset16(long long indices, long long tags, int size, int numOfWays)
 {
     int i, j, count;
     for (i = 0; i < size; i++)
     {
-        setNum = indices[i];
-        tag = tags[i];
+        setNum = indices;
+        tag = tags;
         // printf("Tag %d setNum %d\n",tag,setNum);
         for (j = 0, count = 0; j < numOfWays; j++)
         {
@@ -195,6 +207,7 @@ float calcforCacheset16(long long *indices, long long *tags, int size, int numOf
             {
                 // printf("Cache hit at set %d and cache line %d valid:%d Tag:%d\n", setNum, j, cache16[setNum].c[j].valid, cache16[setNum].c[j].tag);
                 hit++;
+                return 1;
                 break;
             }
             //Beginning with all misses
@@ -206,6 +219,7 @@ float calcforCacheset16(long long *indices, long long *tags, int size, int numOf
                 cache16[setNum].front = (cache16[setNum].front + 1) % numOfWays;
                 // printf("Data added at set %d and cache line %d valid:%d Tag:%d\n", setNum, j, cache16[setNum].c[j].valid, cache16[setNum].c[j].tag);
                 miss++;
+                return 0;
                 break;
             }
             else
@@ -224,13 +238,14 @@ float calcforCacheset16(long long *indices, long long *tags, int size, int numOf
                 cache16[setNum].c[cache16[setNum].back].tag = tag;
                 cache16[setNum].c[cache16[setNum].back].valid = 1;
                 cache16[setNum].back = (cache16[setNum].back + 1) % numOfWays;
+                return 0;
             }
         }
     }
     // printf("Hit %d Miss %d", hit, miss);
-    return ((float)hit / size);
+    // return ((float)hit / size);
 }
-float fifo(long long *indices, long long *tags, int size, int numOfWays)
+float fifo(long long indices, long long tags, int size, int numOfWays)
 {
     float percentage;
     if (numOfWays == 2)
