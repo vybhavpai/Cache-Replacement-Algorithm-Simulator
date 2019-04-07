@@ -6,35 +6,16 @@ struct cacheLine{
     int valid;
 };
 
-struct cacheSet2
-{
-    struct cacheLine c[2];
-
-};
-struct cacheSet4
-{
-    struct cacheLine c[4];
-
-};
-struct cacheSet8
-{
-    struct cacheLine c[4];
-
-};
-struct cacheSet16
-{
-    struct cacheLine c[16];
-};
-struct cacheSet2 cache2[2048];
-struct cacheSet4 cache4[1024];
-struct cacheSet8 cache8[512];
+struct cacheSet2 cache2plru[2048];
+struct cacheSet4 cache4plru[1024];
+struct cacheSet8 cache8plru[512];
 struct cacheSet16 cache16[256];
 int node2=0,node4=0,node8=0,node16=0;
 long long int cache_size = 1024*1024;
 int no_of_blocks=0;
 int vreplace = 0;
 int currLine=0;
-int i=0;
+int i=0,j=0;
 int counter;
 int found2=-1,found4=-1,found8=-1,found16=-1;int first=0;
 
@@ -48,8 +29,8 @@ void init(int block_size,int n)
         {
             for(j=0;j<2;j++)
             {
-                cache2[i].c[j].valid=0;
-                cache2[i].c[j].tag=-1;
+                cache2plru[i].c[j].valid=0;
+                cache2plru[i].c[j].tag=-1;
             }
 
         }
@@ -60,8 +41,8 @@ void init(int block_size,int n)
         {
             for(j=0;j<4;j++)
             {
-                cache4[i].c[j].valid=0;
-                cache4[i].c[j].tag=-1;
+                cache4plru[i].c[j].valid=0;
+                cache4plru[i].c[j].tag=-1;
             }
         }
     }
@@ -71,8 +52,8 @@ void init(int block_size,int n)
         {
             for(j=0;j<8;j++)
             {
-                cache8[i].c[j].valid=0;
-                cache8[i].c[j].tag=-1;
+                cache8plru[i].c[j].valid=0;
+                cache8plru[i].c[j].tag=-1;
             }
         }
     }
@@ -83,7 +64,7 @@ void init(int block_size,int n)
             for(j=0;j<16;j++)
             {
                 cache16[i].c[j].valid=0;
-                cache2[i].c[j].tag=-1;
+                cache2plru[i].c[j].tag=-1;
             }
         }
     }
@@ -103,7 +84,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 		for (counter = 0; counter < 2 && found2 < 0; counter++)
         {
-            if(cache2[setValue].c[counter].tag==tagValue && cache2[setValue].c[counter].valid==1)
+            if(cache2plru[setValue].c[counter].tag==tagValue && cache2plru[setValue].c[counter].valid==1)
             {
                 if(counter==0)
                     node2=1;
@@ -119,7 +100,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
             currLine = 0;
 			for(i=0; i<2 ;i++)
             {
-                if(cache2[setValue].c[i].valid==0)
+                if(cache2plru[setValue].c[i].valid==0)
                 {
                     vreplace=1;
                     currLine=i;
@@ -139,7 +120,8 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 			}
 
-			cache2[setValue].c[currLine].tag=tagValue;
+			cache2plru[setValue].c[currLine].tag=tagValue;
+			cache2plru[setValue].c[currLine].valid=1;
 
 			// Update Nodes for last access (same as read, move to function):
 			// nodes=00x -> line 0
@@ -162,7 +144,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 		for (counter = 0; counter < 4 && found4< 0; counter++)
         {
-            if(cache4[setValue].c[counter].tag==tagValue && cache4[setValue].c[counter].valid==1)
+            if(cache4plru[setValue].c[counter].tag==tagValue && cache4plru[setValue].c[counter].valid==1)
             {
                 if (0 == counter)
 					node4 = (node4 & 1) | 6;
@@ -184,7 +166,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 			for(i=0;i<4;i++)
             {
-                if(cache4[setValue].c[i].valid==0)
+                if(cache4plru[setValue].c[i].valid==0)
                 {
                     vreplace=1;
                     currLine = i;
@@ -206,13 +188,13 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 			}
 
-			cache4[setValue].c[currLine].tag=tagValue;
-			cache4[setValue].c[currLine].valid=1;
+			cache4plru[setValue].c[currLine].tag=tagValue;
+			cache4plru[setValue].c[currLine].valid=1;
 
 
 			if (0 == currLine)
                 node4 = (node4 & 1) | 6;
-            if (1 == currLine)
+             if (1 == currLine)
                 node4 = (node4 & 1) | 4;
             if (2 == currLine)
                 node4 = (node4 & 2) | 1;
@@ -232,7 +214,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 		for (counter = 0; counter < 8 && found8< 0; counter++)
         {
-            if(cache8[setValue].c[counter].tag==tagValue && cache8[setValue].c[counter].valid==1)
+            if(cache8plru[setValue].c[counter].tag==tagValue && cache8plru[setValue].c[counter].valid==1)
             {
                 if (0 == counter)
 					node8 = (node8 & 23) | 104;
@@ -251,7 +233,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
                 if (7 == counter)
                     node8 = (node8 & 46) | 0;
 
-				found8 = counter;
+				found8 = 1;
 				return 1;
             }
         }
@@ -261,18 +243,15 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 			for(i=0;i<8;i++)
             {
-                if(cache8[setValue].c[i].valid==0)
+                if(cache8plru[setValue].c[i].valid==0)
                 {
                     vreplace=1;
                     currLine = i;
                 }
             }
 
-			if(vreplace=0) {
-				// nodes=00x -> line 0
-				// nodes=01x -> line 1
-				// nodes=1x0 -> line 2
-				// nodes=1x1 -> line 3
+			if(vreplace==0) {
+
 				if (0 == (node8 & 6))
 					currLine = 0;
 				else if (2 == (node8 & 6))
@@ -285,7 +264,8 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 			}
 
-			cache4[setValue].c[currLine].tag=tagValue;
+			cache8plru[setValue].c[currLine].tag=tagValue;
+			cache8plru[setValue].c[currLine].valid=1;
 
 
 			if (0 == currLine)
@@ -383,7 +363,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 			}
 
-			cache4[setValue].c[currLine].tag=tagValue;
+			cache4plru[setValue].c[currLine].tag=tagValue;
 
 
 			if (0 == currLine)
