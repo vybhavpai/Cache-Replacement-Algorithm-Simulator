@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+// compile ../../../pin -t obj-intel64/pinatrace.so -- executable file | gzip > trace.gz
+// make obj-intel64/pinatrace.so
 struct cacheLine
 {
     int valid;
@@ -27,12 +28,12 @@ struct cacheSet16
     struct cacheLine c[16];
     int front, back;
 };
-struct cacheSet2 cache2[8191];
-struct cacheSet4 cache4[4096];
-struct cacheSet8 cache8[2048];
-struct cacheSet16 cache16[1024];
+struct cacheSet2 cache2[2047];
+struct cacheSet4 cache4[1023];
+struct cacheSet8 cache8[512];
+struct cacheSet16 cache16[255];
 int miss, hit;
-long long setNum,tag;
+long long setNum, tag;
 float calcforCacheset2(long long indices, long long tags, int size, int numOfWays)
 {
     int i, j, count;
@@ -64,7 +65,7 @@ float calcforCacheset2(long long indices, long long tags, int size, int numOfWay
             }
             else
             {
-                
+
                 // printf("Cache miss at set %d and cache line %d valid:%d Tag:%d\n", setNum, j, cache2[setNum].c[j].valid, cache2[setNum].c[j].tag);
                 count++;
             }
@@ -75,7 +76,7 @@ float calcforCacheset2(long long indices, long long tags, int size, int numOfWay
             if (count == numOfWays)
             {
                 // printf("All cache lines in the set checked and non match so fifo performed back%d\n", cache2[setNum].back);
-                
+
                 miss++;
                 cache2[setNum].c[cache2[setNum].back].tag = tag;
                 cache2[setNum].c[cache2[setNum].back].valid = 1;
@@ -187,7 +188,6 @@ float calcforCacheset8(long long indices, long long tags, int size, int numOfWay
                 cache8[setNum].back = (cache8[setNum].back + 1) % numOfWays;
                 return 0;
             }
-
         }
     }
     // return ((float)hit / size);
