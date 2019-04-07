@@ -119,18 +119,18 @@ int main(int argc , char** argv )
 	string temp,type,word;
  
 
-    for(i=1;i<argc;i++)
-    {
-        if(i==1)algorithm=argv[i];
-        //else if(i==2) filename=argv[i];
-        else if(i==2) numberOfWays=stringtoint(argv[i]);
-    }
+    	for(i=1;i<argc;i++)
+    	{
+    	    if(i==1)algorithm=argv[i];
+    	    //else if(i==2) filename=argv[i];
+    	    else if(i==2) numberOfWays=stringtoint(argv[i]);
+    	}
     // fstream file; 
     // file.open(filename.c_str());
     // int counter=0;
 	
 	do
-    { 
+    	{ 
     	   cin >> temp;
            cin >> type;
            cin >> word;
@@ -169,10 +169,9 @@ int main(int argc , char** argv )
         	else if(algorithm=="lru")
         	{
         		//shrinidhi
-                // arguments to lru function: tagValue[size], setValue[size], size, numberOfWays
-                // Giving error check it 
-                hitRatio = lru(TAGNUMBER,SETNUMBER,1,numberOfWays,64); 
-        		if(hitRatio == 1)
+                	// arguments to lru function: tagValue[size], setValue[size], size, numberOfWays
+                	hitRatio = lru(TAGNUMBER,SETNUMBER,1,numberOfWays,64); 
+        		    if(hitRatio == 1)
         			hits++;
 
         	}
@@ -182,15 +181,13 @@ int main(int argc , char** argv )
         	}
         	else if(algorithm=="fifo")
         	{
-        		float result = fifo(SETNUMBER,TAGNUMBER,1,numberOfWays);
+        		float result = fifo(TAGNUMBER,SETNUMBER,1,numberOfWays);
+
                 if(result==1){
                     hits++;
                 }
-        	}
+       	}
             
-            
-        
-    
     }while(true);
 
     cout << hits << "is number of hits " << size <<	 "is total input\n";
