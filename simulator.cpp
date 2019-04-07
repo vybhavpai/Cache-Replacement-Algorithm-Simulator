@@ -4,7 +4,7 @@
 #include "arc.h"
 #include "nru.h"
 
-//Command to run gzip -tc trace.gz | ./a.out fifo 4
+//Command to run gzip -dc trace.gz | ./a.out fifo 4
 
 using namespace std;
 
@@ -182,6 +182,7 @@ int main(int argc , char** argv )
         	else if(algorithm=="fifo")
         	{
         		float result = fifo(TAGNUMBER,SETNUMBER,1,numberOfWays);
+
                 if(result==1){
                     hits++;
                 }
