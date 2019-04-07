@@ -2,7 +2,8 @@
 #include<stdlib.h>
 void main()
 {
-	long long int i,j,k,A[250][250],B[250][250],C[250][250];
+	long long int i,j,k;
+	double A[250][250],B[250][250],C[250][250];
 	for(i=0;i<250;i++)
 	{
 		for(j=0;j<250;j++)

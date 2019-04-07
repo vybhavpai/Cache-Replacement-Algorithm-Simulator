@@ -3,12 +3,12 @@
 #include<math.h>
 long long int tagValue;
 long long int setValue;
-long long int value[16384];
-int valid[16384], tim[16384];
+long long int value[4096];
+int valid[4096], tim[4096];
 static int count=0;
 int lru(long long int tagValue, long long int setValue, long long int size, int numberOfWays, long long int block_size)
 {
-	long long int cache_size = 1024*1024, no_of_blocks = cache_size/block_size;
+	long long int cache_size = 1024*256, no_of_blocks = cache_size/block_size;
 	long long int i,j,k,temp1,temp2,flag;
 	long long int no_of_sets = no_of_blocks/numberOfWays;
 	if(count == 0)
