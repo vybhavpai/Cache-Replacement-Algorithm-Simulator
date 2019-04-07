@@ -174,7 +174,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 					node4 = (node4 & 2) | 0;
 
 				found4 = 1;
-				cout<<"Node4 in hit is"<<"currline is "<<currLine<<node4<<endl;
+
 				return 1;
             }
         }
@@ -219,7 +219,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
             if (3 == currLine)
                 node4 = (node4 & 2) | 0;
 
-            cout<<"Node4 in miss is"<<node4<<"currline is"<<currLine<<"Vreplace is "<<vreplace<<endl;
+
             return 0;
 		}
 
