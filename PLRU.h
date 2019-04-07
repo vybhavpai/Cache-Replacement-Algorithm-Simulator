@@ -25,10 +25,10 @@ struct cacheSet16
 {
     struct cacheLine c[16];
 };
-struct cacheSet2 cache2[8191];
-struct cacheSet4 cache4[4096];
-struct cacheSet8 cache8[2048];
-struct cacheSet16 cache16[1024];
+struct cacheSet2 cache2[2048];
+struct cacheSet4 cache4[1024];
+struct cacheSet8 cache8[512];
+struct cacheSet16 cache16[256];
 int node2=0,node4=0,node8=0,node16=0;
 long long int cache_size = 1024*1024;
 int no_of_blocks=0;
@@ -44,7 +44,7 @@ void init(int block_size,int n)
     no_of_blocks = cache_size/block_size;
     if(n==2)
     {
-        for(i=0;i<8191;i++)
+        for(i=0;i<2048;i++)
         {
             for(j=0;j<2;j++)
             {
@@ -56,7 +56,7 @@ void init(int block_size,int n)
     }
     if(n==4)
     {
-        for(i=0;i<4096;i++)
+        for(i=0;i<1024;i++)
         {
             for(j=0;j<4;j++)
             {
@@ -67,7 +67,7 @@ void init(int block_size,int n)
     }
     if(n==8)
     {
-        for(i=0;i<2048;i++)
+        for(i=0;i<512;i++)
         {
             for(j=0;j<8;j++)
             {
@@ -78,7 +78,7 @@ void init(int block_size,int n)
     }
     if(n==16)
     {
-        for(i=0;i<1024;i++)
+        for(i=0;i<256;i++)
         {
             for(j=0;j<16;j++)
             {
