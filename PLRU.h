@@ -1,10 +1,12 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
+
 struct cacheSet2 cache2plru[2048];
 struct cacheSet4 cache4plru[1024];
 struct cacheSet8 cache8plru[512];
 struct cacheSet16 cache16plru[256];
+
 int node2=0,node4=0,node8=0,node16=0;
 long long int cache_size = 1024*32;
 int no_of_blocks=0;

@@ -69,9 +69,9 @@ int nru(long long int tagNumber, int setNumber,int noOfWays,int size)
 {
 	
 	int i,j,hits=0, flag = 0;
-	static int noOfSets = pow(2,18)/ (noOfWays*size);
+	static int noOfSets = pow(2,15)/ (noOfWays*size);
 	static int count = 0;
- 	
+ 	// cout << setNumber << "is setnumber and " << tagNumber<< "is tagnumber\n";
  	// printf("creating sets\n");
 
     
