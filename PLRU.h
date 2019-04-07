@@ -101,6 +101,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
                 {
                     vreplace=1;
                     currLine=i;
+                    break;
                 }
             }
 
@@ -109,7 +110,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 				if (0 == node2)
 					currLine = 1;
-				else
+				if (0 == node2)
 					currLine = 0;
 
 			}
