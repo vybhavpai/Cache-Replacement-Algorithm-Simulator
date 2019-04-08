@@ -2,10 +2,10 @@
 #include<stdio.h>
 #include<string.h>
 
-struct cacheSet2 cache2plru[2048];
-struct cacheSet4 cache4plru[1024];
-struct cacheSet8 cache8plru[512];
-struct cacheSet16 cache16plru[256];
+struct cacheSet2 cache2plru[256];
+struct cacheSet4 cache4plru[128];
+struct cacheSet8 cache8plru[64];
+struct cacheSet16 cache16plru[32];
 
 int node2=0,node4=0,node8=0,node16=0;
 long long int cache_size = 1024*32;
@@ -22,7 +22,7 @@ void init(int block_size,int n)
     no_of_blocks = cache_size/block_size;
     if(n==2)
     {
-        for(i=0;i<2048;i++)
+        for(i=0;i<256;i++)
         {
             for(j=0;j<2;j++)
             {
@@ -34,7 +34,7 @@ void init(int block_size,int n)
     }
     if(n==4)
     {
-        for(i=0;i<1024;i++)
+        for(i=0;i<128;i++)
         {
             for(j=0;j<4;j++)
             {
@@ -45,7 +45,7 @@ void init(int block_size,int n)
     }
     if(n==8)
     {
-        for(i=0;i<512;i++)
+        for(i=0;i<64;i++)
         {
             for(j=0;j<8;j++)
             {
@@ -56,7 +56,7 @@ void init(int block_size,int n)
     }
     if(n==16)
     {
-        for(i=0;i<256;i++)
+        for(i=0;i<32;i++)
         {
             for(j=0;j<16;j++)
             {
@@ -109,9 +109,9 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
             {
 
 				if (0 == node2)
-					currLine = 1;
-				if (0 == node2)
 					currLine = 0;
+				if (1 == node2)
+					currLine = 1;
 
 			}
 
@@ -120,7 +120,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 
 			if (0 == currLine)
-				node2=1;
+				node2 = 1;
 			if (1 == currLine)
 				node2 = 0;
 
@@ -185,7 +185,7 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 			if (0 == currLine)
                 node4 = (node4 & 1) | 6;
-             if (1 == currLine)
+            if (1 == currLine)
                 node4 = (node4 & 1) | 4;
             if (2 == currLine)
                 node4 = (node4 & 2) | 1;
@@ -246,19 +246,19 @@ int plru(long long int tagValue, long long int setValue, int numberOfWays,int bl
 
 				if (0 == (node8 & 104))
 					currLine = 0;
-				else if (8 == (node8 & 104))
+				if (8 == (node8 & 104))
 					currLine = 1;
-				else if (32 == (node8 & 100))
+				if (32 == (node8 & 100))
 					currLine = 2;
-				else if (38 == (node8 & 100))
+				if (36 == (node8 & 100))
 					currLine = 3;
-                else if (64 == (node8 & 82))
+                if (64 == (node8 & 82))
 					currLine = 4;
-                else if (66 == (node8 & 82))
+                if (66 == (node8 & 82))
 					currLine = 5;
-                else if (80 == (node8 & 81))
+                if (80 == (node8 & 81))
 					currLine = 6;
-                else if (81 == (node8 & 81))
+                if (81 == (node8 & 81))
 					currLine = 7;
 
 
