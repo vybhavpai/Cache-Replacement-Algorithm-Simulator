@@ -31,7 +31,7 @@ Download the traces from here (Click on Link to download):
 After downloading the traces move them into the repository.
 
 
-### Simulate Cache Replacement Algorithm
+## Simulate Cache Replacement Algorithm
 
 To compile and run the simulator on traces:
 
