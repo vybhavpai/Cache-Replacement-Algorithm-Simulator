@@ -37,11 +37,11 @@ To compile and run the simulator on traces:
 
 Step 1 : 
 ```
-g++ simulator.cpp
+$ g++ simulator.cpp
 ```
 Step 2:
 ```
-gzip -dc (trace_name.gz) | ./a.out (replacement_algorithm in small) (no_of_ways) (block_size)
+$ gzip -dc (trace_name.gz) | ./a.out (replacement_algorithm in small) (no_of_ways) (block_size)
 ```
 Step 3: 
 ```
@@ -50,25 +50,24 @@ Wait for 15 - 20 minutes for each simulation.
 
 ### Example
 ```
-g++ simulator.cpp
-gzip -dc trace_tile.gz | ./a.out srrip 2 32
+$ g++ simulator.cpp
+$ gzip -dc trace_tile.gz | ./a.out srrip 2 32
 
 Now wait for some time.....
 ```
 The result will appear something like this:
 ```
 103284902 is number of hits 103745282 is total input
+0.995562 is hit ratio
+73678224 is number of reads 
+30067058 number of writes 
+456979487 is total number of clock cycles
 ```
 
-We then calculate the Hit Percentage by dividing the number of hits by total input and multiplying it with 100.
 
 ```
 That's all folks!!!
 ```
-
-## Contributing
-
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
@@ -79,10 +78,6 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 * **Abhinav P Y**   - *171CO103*
 * **Arqum Shaikh**   - *171CO241* 
 * **Chaitany Pandiya**   - *171CO112* 
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
