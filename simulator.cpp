@@ -3,7 +3,6 @@
 #include "fifo.h"
 #include "arc.h"
 #include "nru.h"
-
 #include "PLRU.h"
 //Command to run gzip -dc trace.gz | ./a.out fifo 4
 
@@ -205,6 +204,13 @@ int main(int argc, char **argv)
         if (algorithm == "srrip")
         {
             //py
+        }
+        else if (algorithm == "arc")
+        {
+            //chaitanya
+            hitRatio = ARC(TAGNUMBER, SETNUMBER, numberOfWays, blockSize);
+            if (hitRatio == 1)
+                hits++;
         }
         else if (algorithm == "rrp")
         {
