@@ -28,10 +28,10 @@ struct cacheSet16
     struct cacheLine c[16];
     int front, back;
 };
-struct cacheSet2 cache2[2047];
-struct cacheSet4 cache4[1023];
-struct cacheSet8 cache8[512];
-struct cacheSet16 cache16[255];
+struct cacheSet2 cache2[512];
+struct cacheSet4 cache4[256];
+struct cacheSet8 cache8[128];
+struct cacheSet16 cache16[64];
 int miss, hit;
 long long setNum, tag;
 float calcforCacheset2(long long indices, long long tags, int size, int numOfWays)

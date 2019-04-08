@@ -1,18 +1,30 @@
+
+// #include "lru.h"
+// #include "fifo.h"
+// #include "arc.h"
+// #include "lru.h"
+// #include "fifo.h"
+// #include "arc.h"
+// #include "nru.h"
+
 #include <bits/stdc++.h>
-#include "lru.h"
-#include "fifo.h"
-#include "arc.h"
-#include "nru.h"
-#include "srrip.h"
-#include "PLRU.h"
-#include <time.h>
+// #include "lru.h"
+// #include "fifo.h"
+// #include "arc.h"
+// #include "nru.h"
+
+
+// #include "PLRU.h"
 //Command to run gzip -dc trace.gz | ./a.out fifo 4
 
 using namespace std;
 
-//long long int tagValue[1000000],setValue[1000000] ;
+
 
 #include "lfu.h"
+
+//long long int tagValue[1000000],setValue[1000000] ;
+
 // declare cache properties here and send them to the function , funcyion call will now look like : (cache,valid,referenced,setnumber,tagnumber,noofways)
 // also declare any other type of globally referenced data for any algorithm
 
@@ -98,9 +110,14 @@ pair<long long int, long long int> hextodec(string s, int waybits,int blockBits)
         binary += binequi;
     }
     //cout<<binary<<" is binary "<<endl;
+// <<<<<<< HEAD
+//     for (i = 33 + waybits; i < 42; i++)
+// =======
     for (i = 33 + waybits; i < 48 - blockBits; i++)
+    {
+// >>>>>>> 04c9c3d33f1e40caa3358815b0af5a3efba96f75
         setno += binary[i];
-
+    }
     for (i = 0; i < 33 + waybits; i++)
         tagno += binary[i];
     //cout<<setno<<" "<<tagno<<endl;
@@ -157,6 +174,21 @@ int stringtoint(string temp)
 
 int main(int argc, char **argv)
 {
+// <<<<<<< HEAD
+
+	// int i,numberOfWays;
+	// string algorithm,filename;
+ //    int hitRatio;
+ //    int SETNUMBER;
+ //    long long int TAGNUMBER; 
+	// long long int read=0,size=0,hits = 0;
+	// string temp,type,word;
+ //    memset(cacheLfu,-1,sizeof(cacheLfu));
+
+
+    
+// =======
+// >>>>>>> 04c9c3d33f1e40caa3358815b0af5a3efba96f75
 
 	int i,numberOfWays,blockSize;
 	string algorithm,filename;
@@ -165,7 +197,7 @@ int main(int argc, char **argv)
     long long int TAGNUMBER; 
 	long long int read=0,size=0,hits = 0;
 	string temp,type,word;
- 	memset(cacheLfu,-1,sizeof(cacheLfu));
+    memset(cacheLfu,-1,sizeof(cacheLfu)); 
     for (i = 1; i < argc; i++)
 
     {
@@ -180,14 +212,25 @@ int main(int argc, char **argv)
     // fstream file;
     // file.open(filename.c_str());
     // int counter=0;
-    cout<< algorithm << "\n" << numberOfWays << "\n";
-	clock_t start,end,duration;
-	start=clock();	
+// <<<<<<< HEAD
+
+//     do
+//     {
+//         cin >> temp;
+//         cin >> type;
+//         cin >> word;
+
+//         if (temp[0] == EOF)
+//             break;
+// =======
+//     cout<< algorithm << "\n" << numberOfWays << "\n";
+	
 	do
     { 
     	   cin >> temp;
            cin >> type;
            cin >> word;
+// >>>>>>> 04c9c3d33f1e40caa3358815b0af5a3efba96f75
 
            if(temp[0] == EOF)
                 break;
@@ -208,17 +251,6 @@ int main(int argc, char **argv)
         if (algorithm == "srrip")
         {
             //py
-	     int answer;                                                                                                                           
-             answer = srrip(SETNUMBER, TAGNUMBER, 1, numberOfWays, blockSize);
-             if(answer == 1)
-                 hits++;
-        }
-        else if (algorithm == "arc")
-        {
-            //chaitanya
-            hitRatio = ARC(TAGNUMBER, SETNUMBER, numberOfWays, blockSize);
-            if (hitRatio == 1)
-                hits++;
         }
         else if (algorithm == "rrp")
         {
@@ -226,63 +258,84 @@ int main(int argc, char **argv)
         }
         else if (algorithm == "nru")
         {
-            hitRatio = nru(TAGNUMBER, SETNUMBER, numberOfWays, blockSize);
-            if (hitRatio == 1)
-                hits++;
-          //  if (flag == 0)
-          //  {
-          //      cout << "inside nru "<< hitRatio<<" is hit \n";
-          //      flag = 1;
+// <<<<<<< HEAD
+//             // hitRatio = nru(TAGNUMBER, SETNUMBER, numberOfWays, 64);
+//             // if (hitRatio == 1)
+//             //     hits++;
+//             // if (flag == 0)
+//             // {
+//             //     cout << "inside nru \n";
+//             //     flag = 1;
+//             // }
+// =======
+//             hitRatio = nru(TAGNUMBER, SETNUMBER, numberOfWays, blockSize);
+//             if (hitRatio == 1)
+//                 hits++;
+//             if (flag == 0)
+//             {
+//                 cout << "inside nru "<< hitRatio<<" is hit \n";
+//                 flag = 1;
 
-         //   }
+//             }
+// >>>>>>> 04c9c3d33f1e40caa3358815b0af5a3efba96f75
         }
         else if (algorithm == "lfu")
         {
             //arqum
-	hits += lfu(TAGNUMBER, SETNUMBER, numberOfWays);
-	  
+            hits+=lfu(TAGNUMBER, SETNUMBER,numberOfWays);
         }
         else if (algorithm == "lru")
         {
             //shrinidhi
             // arguments to lru function: tagValue[size], setValue[size], size, numberOfWays
             // Giving error check it
-            if (flag == 0)
-            {
-                cout << "inside lru \n";
-                flag = 1;
-            }
-            hitRatio = lru(TAGNUMBER, SETNUMBER, 1, numberOfWays, blockSize);
-            if (hitRatio == 1)
-                hits++;
+// <<<<<<< HEAD
+//             // if (flag == 0)
+//             // {
+//             //     cout << "inside lru \n";
+//             //     flag = 1;
+//             // }
+//             // hitRatio = lru(TAGNUMBER, SETNUMBER, 1, numberOfWays, 64);
+//             // if (hitRatio == 1)
+//             //     hits++;
+// =======
+//             if (flag == 0)
+//             {
+//                 cout << "inside lru \n";
+//                 flag = 1;
+//             }
+//             hitRatio = lru(TAGNUMBER, SETNUMBER, 1, numberOfWays, blockSize);
+//             if (hitRatio == 1)
+//                 hits++;
+// >>>>>>> 04c9c3d33f1e40caa3358815b0af5a3efba96f75
         }
         else if (algorithm == "plru")
         {
             //chaitanya
-            hitRatio = plru(TAGNUMBER, SETNUMBER, numberOfWays, blockSize);
-            if (hitRatio == 1)
-                hits++;
+// <<<<<<< HEAD
+//             // hitRatio = plru(TAGNUMBER, SETNUMBER, numberOfWays, 64);
+//             // if (hitRatio == 1)
+//             //     hits++;
+// =======
+//             hitRatio = plru(TAGNUMBER, SETNUMBER, numberOfWays, blockSize);
+//             if (hitRatio == 1)
+//                 hits++;
+// >>>>>>> 04c9c3d33f1e40caa3358815b0af5a3efba96f75
         }
         else if (algorithm == "fifo")
         {
 
-             hitRatio = fifo(SETNUMBER, TAGNUMBER, 1, numberOfWays);
-            // cout<<result;
-            if (hitRatio == 1)
-            {
-                 hits++;
-            }
+            // hitRatio = fifo(SETNUMBER, TAGNUMBER, 1, numberOfWays);
+            // // cout<<result;
+            // if (hitRatio == 1)
+            // {
+            //     hits++;
+            // }
         }
 
     } while (true);
-	end=clock();
-	duration=end-start;
-    cout << hits << " is number of hits " << size << " is total input\n";
-    cout << (double)hits/(double)size <<" is hit ratio\n";
-    cout << read << " is number of reads \n";
-    cout << size - read << " number of writes \n";
-    cout << duration <<" is total number of clock cycles"<<endl;
 
+    cout << hits << "is number of hits " << size << "is total input\n";
 
     return 0;
 }

@@ -2,11 +2,7 @@
 #include<stdlib.h>
 void main()
 {
-<<<<<<< HEAD
-	long long int i,j;
-=======
 	long long int i,j,k;
->>>>>>> b7f027ebd2ec50d29125c765c10bc359c1adfbca
 	double A[250][250],B[250][250],C[250][250];
 	for(i=0;i<250;i++)
 	{
