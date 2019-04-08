@@ -2,10 +2,10 @@
 #include<stdio.h>
 #include<string.h>
 
-struct cacheSet2 cache2plru[256];
-struct cacheSet4 cache4plru[128];
-struct cacheSet8 cache8plru[64];
-struct cacheSet16 cache16plru[32];
+struct cacheSet2 cache2plru[512];
+struct cacheSet4 cache4plru[256];
+struct cacheSet8 cache8plru[128];
+struct cacheSet16 cache16plru[64];
 
 int node2=0,node4=0,node8=0,node16=0;
 long long int cache_size = 1024*32;
@@ -22,7 +22,7 @@ void init(int block_size,int n)
     no_of_blocks = cache_size/block_size;
     if(n==2)
     {
-        for(i=0;i<256;i++)
+        for(i=0;i<512;i++)
         {
             for(j=0;j<2;j++)
             {
@@ -34,7 +34,7 @@ void init(int block_size,int n)
     }
     if(n==4)
     {
-        for(i=0;i<128;i++)
+        for(i=0;i<256;i++)
         {
             for(j=0;j<4;j++)
             {
@@ -45,7 +45,7 @@ void init(int block_size,int n)
     }
     if(n==8)
     {
-        for(i=0;i<64;i++)
+        for(i=0;i<128;i++)
         {
             for(j=0;j<8;j++)
             {
@@ -56,7 +56,7 @@ void init(int block_size,int n)
     }
     if(n==16)
     {
-        for(i=0;i<32;i++)
+        for(i=0;i<64;i++)
         {
             for(j=0;j<16;j++)
             {
