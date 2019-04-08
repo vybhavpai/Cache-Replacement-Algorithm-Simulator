@@ -51,7 +51,7 @@ Wait for 15 - 20 minutes for each simulation.
 ### Example
 ```
 g++ simulator.cpp
-gzip -dc trace_tilz.gz | ./a.out srrip 2 32
+gzip -dc trace_tile.gz | ./a.out srrip 2 32
 
 Now wait for some time.....
 ```
